@@ -3,17 +3,6 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.8px;
 }
-.main__block{
-    width: 600px;
-    height: 80px;
-    margin: 100px auto;
-    background-color: rgb(171, 172, 173);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 .info-block{
     width: 500px;
     /* height: 40px; */
@@ -25,23 +14,110 @@ body{
     cursor: default;
     text-align: center;
 }
-.out__block span{
-    color: rgb(11, 88, 170);
-}
-.out__block span:hover{
-    cursor: pointer;
-}
 
 li{
     list-style: none;
-    padding: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    /* border: 1px solid black; */
-}
-.redtext{
-    color: red;
-    border-bottom: solid 1px red;
-    /* transition: 0.3s; */
     
 }
+.battleship__main-block{
+    position: relative;
+    margin: 100px auto;
+    width: 1024px;
+    height: 863px;
+    border: solid 2px rgb(255, 255, 255);
+    /* background-color: black; */
+    background: url(img/board.jpg) no-repeat;
+    box-shadow:
+    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+    
+
+}
+.battleship__board {
+    position: absolute;
+    left: 173px;
+    top: 98px;
+    border: 1px rgb(254, 254, 254) solid;
+}
+.battleship__board td{
+    width: 92px;
+    height: 92px;
+    border: 1px solid white;
+}
+.messageArea {
+    /* display: none; */
+    position: absolute;
+    left: -35px;
+    top: -38px;
+    width: 500px;
+    height: 70px;
+    border-radius: 5px;
+    background-color: rgb(54, 54, 54);
+    transition: 0.6s;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+}
+form{
+    position: absolute;
+    bottom: -25px;
+    right: -25px;
+    
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+form input{
+    padding: 12px;
+    width: 130px;
+    border-radius: 5px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.guessInput {
+    /* background-color: rgb(195, 17, 17); */
+    margin-right: 5px;
+}
+.guessInput:hover{
+    filter: brightness(90%);
+}
+.fireButton {
+    
+}
+.fireButton:hover{
+    filter: brightness(90%);
+}
+.fireButton:active{
+    transform: translateY(1px);
+}
+.hit{
+    background: url(img/ship.png) no-repeat center center;
+}
+.miss{
+    background: url(img/miss.png) no-repeat center center;
+}
+/* .gradient-background {
+    background: linear-gradient(58deg,#999999,#020202,#484848,#232323);
+    background-size: 240% 240%;
+    animation: gradient-animation 32s ease infinite;
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  } */

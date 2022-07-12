@@ -51,8 +51,6 @@ console.log(typeof toy);
 console.log(toy instanceof Duck);
 
 
-console.log('work hard')
-// начинаем мутить морской бой
 
 
 
