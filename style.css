@@ -35,13 +35,13 @@ li{
     
 }
 .battleship__board td{
-    width: 92px;
-    height: 92px;
+    width: 91px;
+    height: 91px;
     /* border: 1px solid white; */
 }
 .messageArea__main {
-    padding: 10px;
-    background-color: rgb(17, 108, 21);
+    padding: 9px;
+    background-color: rgb(101, 101, 101);
     transition: 0.6s;
     position: absolute;
     left: -35px;
@@ -53,7 +53,7 @@ li{
 }
 .messageArea {
     background-color: white;    
-    color: rgb(33, 133, 33);
+    /* color: rgb(33, 133, 33); */
     text-align: center;
     line-height: 70px;
     text-transform: uppercase;
@@ -66,8 +66,8 @@ form{
     position: absolute;
     bottom: -55px;
     right: -25px;
-    background-color: rgb(17, 108, 21);
-    padding: 10px;
+    background-color: rgb(101, 101, 101);
+    padding: 9px;
     border-radius: 5px;
 }
 form input{
@@ -75,7 +75,7 @@ form input{
     font-size: 20px;
     font-weight: 600;
     border-radius: 5px;
-    border: 4px solid transparent;
+    border: 2px solid transparent;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-align: center;
@@ -83,23 +83,23 @@ form input{
 .guessInput {
     /* background-color: rgb(195, 17, 17); */
     
-    margin-right: 5px;
+    margin-right: 45px;
     outline: none;
-    transition: 0.5s;
+    /* transition: 0.3s; */
     width: 330px;
     color: rgb(33, 133, 33);
 
 }
 .guessInput:hover{
     /* filter: brightness(90%); */
-    border: 4px solid rgb(33, 133, 33);
+    border: 2px solid rgb(33, 33, 33);
 }
 .guessInput:focus{
-    border: 4px solid rgb(33, 133, 33);
+    border: 2px solid rgb(33, 33, 33);
 }
 .fireButton {
     width: 130px;
-    color: red;
+    /* color: red; */
 }
 .fireButton:hover{
     filter: brightness(90%);
