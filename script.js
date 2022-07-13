@@ -15,18 +15,26 @@ function init(){
     }
   };  
   
+  let model = {
+    boardSize: 7,
+    numShips: 3,
+    shipLenght: 3,
+    shipsSunk: 0,
+    ships:[
+        {locations:['31', '41', '51'], hits:['','','']},
+        {locations:['14','24','34'], hits:['','','']},
+        {locations:['00','01','02'], hits:['','','']},
+    ],
+    fire: function(guess){
+        for(let i = 0; i < this.numShips; i++){
+            let ship = this.ships[i];
+        }
+    }
+  };
 
-  let ships = [
-    {locations:['31', '41', '51'], hits:['','','']},
-    {locations:['14','24','34'], hits:['','','']},
-    {locations:['00','01','02'], hits:['','','']},
-  ];
 
-  let ship2 = ships[1];
-  let locations = ship2.locations;
-  console.log(locations[1]);
 
-  
+
 
  
 
