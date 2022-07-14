@@ -7,11 +7,15 @@ function init(){
     displayHit: function(location){
         let cell = document.getElementById(location);
         cell.setAttribute('class', 'hit');
+        let hit = document.querySelector('.messageArea__main');
+        hit.style.display = 'block';
+        console.log(cell)
     },
     displayMiss: function(location){
         let cell = document.getElementById(location);
-        console.log(cell)
         cell.setAttribute('class', 'miss');
+        console.log(cell)
+
     }
   };  
   
@@ -29,13 +33,19 @@ function init(){
         for(let i = 0; i < this.numShips; i++){
             let ship = this.ships[i];
             let index = ship.locations.indexOf(guess);
-           if (index >= 0){
-            ship.hits[index] = 'hit';
-            if(this.isSunk(ship)){
-                this.shipsSunk++
-            }
+            if (index >= 0){
+                ship.hits[index] = 'hit';
+                view.displayHit(guess);
+                view.displayMessage('HIT!');
+                if(this.isSunk(ship)){
+                    view.displayMessage('You sank my battleship!')
+                    this.shipsSunk++
+                }
+                return true;
            }
         }
+        view.displayMiss(guess);
+        view.displayMessage('You missed')
         return false;
     },
     isSunk: function(ship){
@@ -47,10 +57,10 @@ function init(){
     }
   };
 
+model.fire('01');
+model.fire('02');
+model.fire('03');
 
-
-
- 
 
 
 
