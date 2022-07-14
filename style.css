@@ -41,7 +41,7 @@ li{
 }
 .messageArea__main {
     padding: 9px;
-    background-color: rgb(101, 101, 101);
+    /* background-color: rgb(101, 101, 101); */
     transition: 0.6s;
     position: absolute;
     left: -35px;
@@ -66,7 +66,7 @@ form{
     position: absolute;
     bottom: -55px;
     right: -25px;
-    background-color: rgb(101, 101, 101);
+    /* background-color: rgb(101, 101, 101); */
     padding: 9px;
     border-radius: 5px;
 }
@@ -113,7 +113,7 @@ form input{
 .miss{
     background: url(img/miss.png) no-repeat center center;
 }
-/* .gradient-background {
+.gradient-background {
     background: linear-gradient(58deg,#999999,#020202,#484848,#232323);
     background-size: 240% 240%;
     animation: gradient-animation 32s ease infinite;
@@ -129,4 +129,4 @@ form input{
     100% {
       background-position: 0% 50%;
     }
-  } */
+  }

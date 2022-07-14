@@ -20,7 +20,7 @@ function init(){
     numShips: 3,
     shipLenght: 3,
     shipsSunk: 0,
-    ships:[
+    ships: [
         {locations:['31', '41', '51'], hits:['','','']},
         {locations:['14','24','34'], hits:['','','']},
         {locations:['00','01','02'], hits:['','','']},
@@ -28,10 +28,15 @@ function init(){
     fire: function(guess){
         for(let i = 0; i < this.numShips; i++){
             let ship = this.ships[i];
+            let index = ship.locations.indexOf(guess);
+           if (index >= 0){
+            ship.hits[index] = 'hit';
+            return true;
+           }
         }
+        return false;
     }
   };
-
 
 
 
