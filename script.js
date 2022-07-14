@@ -31,10 +31,19 @@ function init(){
             let index = ship.locations.indexOf(guess);
            if (index >= 0){
             ship.hits[index] = 'hit';
-            return true;
+            if(this.isSunk(ship)){
+                this.shipsSunk++
+            }
            }
         }
         return false;
+    },
+    isSunk: function(ship){
+        for (let i = 0; i < this.shipLenght; i++){
+            if(ship.hits[i] !== 'hit')
+            return false;
+        }
+        return true
     }
   };
 
