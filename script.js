@@ -1,4 +1,5 @@
 function init(){
+    // Представление
   let view = {
     displayMessage: function(msg){
         let messageArea = document.querySelector('.messageArea');
@@ -18,11 +19,11 @@ function init(){
 
     }
   };  
-  
+//   Модель
   let model = {
     boardSize: 7,
     numShips: 3,
-    shipLenght: 3,
+    shiplength: 3,
     shipsSunk: 0,
     ships: [
         {locations:['31', '41', '51'], hits:['','','']},
@@ -49,18 +50,36 @@ function init(){
         return false;
     },
     isSunk: function(ship){
-        for (let i = 0; i < this.shipLenght; i++){
+        for (let i = 0; i < this.shiplength; i++){
             if(ship.hits[i] !== 'hit')
             return false;
         }
         return true
     }
   };
+//   Контроллер
+let controller = {
+    guess: 0,
+    processGuess: function(guess){
 
-model.fire('01');
-model.fire('02');
-model.fire('03');
+    }
+}
 
+function parseGuess(guess){
+    let alphabet = ['A','B','C','D','F','G'];
+    if(guess === null || guess.length !==2 ){
+        view.displayMessage('Oops, please enter a letter and a number on the bord!')
+    } else{
+        firstChar = guess.charAt(0);
+        let row = alphabet.indexOf(firstChar);
+        let column = guess.charAt(1);
+
+        if (NaN(row || NaN(column)){
+            view.displayMessage('')
+        }
+    }
+
+}
 
 
 
