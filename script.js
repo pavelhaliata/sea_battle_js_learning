@@ -8,8 +8,8 @@ function init(){
     displayHit: function(location){
         let cell = document.getElementById(location);
         cell.setAttribute('class', 'hit');
-        let hit = document.querySelector('.messageArea__main');
-        hit.style.display = 'block';
+        // let hit = document.querySelector('.messageArea__main');
+        // hit.style.display = 'block';
         console.log(cell)
     },
     displayMiss: function(location){
@@ -70,25 +70,24 @@ function parseGuess(guess){
     if(guess === null || guess.length !==2 ){
         view.displayMessage('Oops, please enter a letter and a number on the bord!')
     } else{
-        firstChar = guess.charAt(0);
+        firstChar = guess.charAt(0);  // извлекаем первый символ строки
         let row = alphabet.indexOf(firstChar);
-        let column = guess.charAt(1);
-
-        if (NaN(row || NaN(column)){
-            view.displayMessage('')
+        let column = guess.charAt(1); // извлекакем второй символ строки
+        if (isNaN(row) || isNaN(column)){
+            view.displayMessage("Oops, that isn't on the board")
+        }else if(row < 0 || row > model.boardSize || column < 0 || column >= model.boardSize){
+            view.displayMessage("Oops, that's off the board")
+        }else {
+            // console.log(row+column)
+            return row + column;
         }
     }
-
+    return null;
 }
+// parseGuess('A7');
 
 
-
-
-
-
-
-
-
+console.log(parseGuess('A0'))
 
 
 
