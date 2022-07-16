@@ -1,6 +1,7 @@
 function init(){
-    // Представление
-  let view = {
+    // --------------------Представление-------------------
+  
+    let view = {
     displayMessage: function(msg){
         let messageArea = document.querySelector('.messageArea');
         messageArea.innerHTML = msg;
@@ -19,7 +20,9 @@ function init(){
 
     }
   };  
-//   Модель
+
+//   ---------------------Модель--------------------------;
+
   let model = {
     boardSize: 7,
     numShips: 3,
@@ -32,14 +35,14 @@ function init(){
     ],
     fire: function(guess){
         for(let i = 0; i < this.numShips; i++){
-            let ship = this.ships[i];
-            let index = ship.locations.indexOf(guess);
-            if (index >= 0){
-                ship.hits[index] = 'hit';
+            let ship = this.ships[i]; // перебераем массив ships и получаем три обекта (корабля) 
+            let index = ship.locations.indexOf(guess); // с помощью indexOf получаем индеск строки или -1, если такого индекса нет (координаты позиции корабля);
+            if (index >= 0) // если с помощью indexOf найдена строка и indexOf не возвращает -1, то...
+                {ship.hits[index] = 'hit'; // ...регистрируется поподание и строка 'hit' помещается в массив hits
                 view.displayHit(guess);
                 view.displayMessage('HIT!');
-                if(this.isSunk(ship)){
-                    view.displayMessage('You sank my battleship!')
+                if(this.isSunk(ship)) // вызываем метод isSunk для проверки заполненности массива hits объекта ship 
+                {view.displayMessage('You sank my battleship!')
                     this.shipsSunk++
                 }
                 return true;
@@ -49,45 +52,65 @@ function init(){
         view.displayMessage('You missed')
         return false;
     },
-    isSunk: function(ship){
-        for (let i = 0; i < this.shiplength; i++){
-            if(ship.hits[i] !== 'hit')
+    
+    isSunk: function(ship) // проверям потоплен ли корабль 
+    {for (let i = 0; i < this.shiplength; i++){
+            if(ship.hits[i] !== 'hit') // проверям массив hits на заполненение индексов строкой 'hit'
             return false;
         }
         return true
     }
   };
-//   Контроллер
-let controller = {
-    guess: 0,
-    processGuess: function(guess){
 
+
+  //   ----------------Контроллер----------------------
+
+let controller = {
+    guesses: 0,
+    processGuess: function(guess){
+        let location = parseGuess(guess);
+        if (location){
+            this.guesses++ // счетчик выстрелов
+            let hit = model.fire(location); // передаем строку методу fire
+            if(hit && model.shipsSunk === model.numShips){
+                view.displayMessage('You sank all my battleships, in ' + this.guesses + ' guesses')
+            }
+        }
     }
 }
 
+// проверка и обработка введённых данных
 function parseGuess(guess){
-    let alphabet = ['A','B','C','D','F','G'];
-    if(guess === null || guess.length !==2 ){
-        view.displayMessage('Oops, please enter a letter and a number on the bord!')
+    let alphabet = ['A','B','C','D','E','F','G'];
+    if(guess === null || guess.length !==2 ) // проверяем на наличие введенных данных и длину строки
+    {view.displayMessage('Oops, please enter a letter and a number on the bord!')
     } else{
-        firstChar = guess.charAt(0);  // извлекаем первый символ строки
-        let row = alphabet.indexOf(firstChar);
-        let column = guess.charAt(1); // извлекакем второй символ строки
-        if (isNaN(row) || isNaN(column)){
-            view.displayMessage("Oops, that isn't on the board")
-        }else if(row < 0 || row > model.boardSize || column < 0 || column >= model.boardSize){
-            view.displayMessage("Oops, that's off the board")
+        let firstChar = guess.charAt(0);  // извлекаем первый символ строки
+        let row = alphabet.indexOf(firstChar); // с помощью indexOf получаем индеск строки
+        let column = guess.charAt(1); // извлекаем второй символ строки
+        if (isNaN(row) || isNaN(column)) // определяем является ли нечисловым значением или нет
+        {view.displayMessage("Oops, that isn't on the board")
+        }else if(row < 0 || row > model.boardSize || column < 0 || column >= model.boardSize) // проверяем диапозон введенных значений от 0 до 6
+        {view.displayMessage("Oops, that's off the board")
         }else {
-            // console.log(row+column)
             return row + column;
         }
     }
     return null;
 }
-// parseGuess('A7');
 
 
-console.log(parseGuess('A0'))
+
+controller.processGuess('B0');
+controller.processGuess('A0');
+controller.processGuess('A1');
+controller.processGuess('A2');
+controller.processGuess('B4');
+controller.processGuess('C4');
+controller.processGuess('D1');
+controller.processGuess('E1');
+controller.processGuess('F1');
+controller.processGuess('D4');
 
 
 
