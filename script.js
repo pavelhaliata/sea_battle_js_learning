@@ -1,4 +1,10 @@
 function init(){
+
+
+
+
+
+
     // --------------------Представление-------------------
   
     let view = {
@@ -11,12 +17,12 @@ function init(){
         cell.setAttribute('class', 'hit');
         // let hit = document.querySelector('.messageArea__main');
         // hit.style.display = 'block';
-        console.log(cell)
+        // console.log(cell)
     },
     displayMiss: function(location){
         let cell = document.getElementById(location);
         cell.setAttribute('class', 'miss');
-        console.log(cell)
+        // console.log(cell)
 
     }
   };  
@@ -28,6 +34,15 @@ function init(){
     numShips: 3,
     shiplength: 3,
     shipsSunk: 0,
+    generateShipLocations: function() //генерируем расположение кораблей и добавляем в массив ships.locations
+    {   let locations;
+        for(let i = 0; i < this.numShips; i++){
+            do{
+                locations = this.generateShip();
+            }while(this.collision(locations));
+            this.ships[i].locations = locations;
+        }
+    },
     ships: [
         {locations:['31', '41', '51'], hits:['','','']},
         {locations:['14','24','34'], hits:['','','']},
@@ -44,7 +59,12 @@ function init(){
                 if(this.isSunk(ship)) // вызываем метод isSunk для проверки заполненности массива hits объекта ship 
                 {view.displayMessage('You sank my battleship!')
                     this.shipsSunk++
+                    console.log(this.shipsSunk)
                 }
+                // if(this.shipsSunk === 3){
+                //     console.log('игра окончена')
+                //     return false
+                // }
                 return true;
            }
         }
@@ -68,12 +88,14 @@ function init(){
 let controller = {
     guesses: 0,
     processGuess: function(guess){
-        let location = parseGuess(guess);
+        let location = parseGuess(guess);// вызываем функцию для проверки корректности введенных данных;
         if (location){
             this.guesses++ // счетчик выстрелов
             let hit = model.fire(location); // передаем строку методу fire
             if(hit && model.shipsSunk === model.numShips){
                 view.displayMessage('You sank all my battleships, in ' + this.guesses + ' guesses')
+                console.log('game over')
+                return false
             }
         }
     }
@@ -99,19 +121,29 @@ function parseGuess(guess){
     return null;
 }
 
+document.querySelector('.fireButton').addEventListener('click', () =>{
+    let guessInput = document.querySelector('.guessInput');
+    guess = guessInput.value;
+    controller.processGuess(guess);
+    guessInput.value = '';
+    
+});
 
 
-controller.processGuess('B0');
-controller.processGuess('A0');
-controller.processGuess('A1');
-controller.processGuess('A2');
-controller.processGuess('B4');
-controller.processGuess('C4');
-controller.processGuess('D1');
-controller.processGuess('E1');
-controller.processGuess('F1');
-controller.processGuess('D4');
+document.querySelector('.guessInput').onkeypress =  handleKeyPress
+    function handleKeyPress(e){
+    if(e.keyCode === 13){
+        document.querySelector('.fireButton').click();
+        return false
+    }
+};
 
+// document.querySelector('.guessInput').addEventListener('onkeypress', (e) =>{
+//     if(e.keyCode === 13){
+//         document.querySelector('.fireButton').click();
+//         return false
+//     }
+// })
 
 
 

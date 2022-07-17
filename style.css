@@ -2,6 +2,23 @@ body{
     background-color: rgb(200, 200, 200);
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.8px;
+
+    background: linear-gradient(280deg,#78c872,#da3fb7,#2a4ade,#86a2e4,#9b7223);
+    background-size: 300% 300%;
+    animation: gradient-animation 50s ease infinite;
+    }
+    
+    @keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+
 }
 
 
@@ -41,14 +58,16 @@ li{
 }
 .messageArea__main {
     padding: 9px;
-    /* background-color: rgb(101, 101, 101); */
-    transition: 0.9s;
+    background-color: rgb(0, 0, 0);
+    /* transition: 0.9s; */
     position: absolute;
     left: -35px;
     top: -38px;
     width: 500px;
     height: 70px;
     border-radius: 5px;
+    border: 1px solid white;
+
     /* display: none; */
 
 
@@ -61,15 +80,15 @@ li{
     text-transform: uppercase;
     letter-spacing: 1px;
     border-radius: 5px;
-
 }
 form{
     position: absolute;
     bottom: -55px;
     right: -25px;
-    /* background-color: rgb(101, 101, 101); */
+    background-color: rgb(0, 0, 0);
     padding: 9px;
     border-radius: 5px;
+    border: 1px solid white;
 }
 form input{
     padding: 10px;
@@ -88,7 +107,7 @@ form input{
     outline: none;
     /* transition: 0.3s; */
     width: 330px;
-    color: rgb(33, 133, 33);
+   
 
 }
 .guessInput:hover{
@@ -100,7 +119,7 @@ form input{
 }
 .fireButton {
     width: 130px;
-    /* color: red; */
+    color: red;
 }
 .fireButton:hover{
     filter: brightness(90%);
@@ -118,6 +137,19 @@ form input{
     background: url(img/miss.png) no-repeat center center;
 }
 /* .gradient-background {
-    background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(65,65,65,1) 61%, rgba(136,136,136,1) 100%);
+  background: linear-gradient(333deg,#149249,#846fb3,#b18049,#2532cf,#49518d);
+  background-size: 300% 300%;
+  animation: gradient-animation 25s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 } */
