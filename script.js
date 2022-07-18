@@ -47,22 +47,37 @@ function init(){
         let direction = Math.floor(Math.random()*2);
         let row, col;
 
-        if (direction === 1){
-            row = Math.floor(Math.random()*this.boardSize);
-            col = Math.floor(Math.random()*this.boardSize - this.shiplength);
+        if (direction === 1){ 
+            row = Math.floor(Math.random() * this.boardSize);
+            col = Math.floor(Math.random() * this.boardSize - this.shiplength);
         }else{
-            row = Math.floor(Math.random()*this.boardSize - this.shiplength);
-            col = Math.floor(Math.random()*this.boardSize)
+            row = Math.floor(Math.random() * this.boardSize - this.shiplength);
+            col = Math.floor(Math.random() * this.boardSize)
         };
+        console.log(direction)
+        console.log(row, col)
         let newShipLocations = [];
         for(let i = 0; i < this.shiplength; i++){
             if(direction === 1){
                 newShipLocations.push(row + '' + (col + i));//?????
+                // console.log(row + '' + (col + i))
             }else{
                 newShipLocations.push((row + i) + '' + col);
             }
         };
+        console.log(newShipLocations)
         return newShipLocations;
+    },
+    collision: function(locations){
+        for(let i = 0; i < this.numShips; i++){
+            let ship = model.ships[i];
+            for(let j = 0; j < locations.length; j++){
+                if (ship.ship.locations.indexOf(locations[j]) >= 0){
+                    return true
+                }
+            }
+        }
+        return false
     },
     ships: [
         {locations:['31', '41', '51'], hits:['','','']},
@@ -167,7 +182,11 @@ document.querySelector('.guessInput').onkeypress =  handleKeyPress
 // })
 
 
-
+model.generateShip()
+model.generateShip()
+model.generateShip()
+model.generateShip()
+model.generateShip()
 
 
 
