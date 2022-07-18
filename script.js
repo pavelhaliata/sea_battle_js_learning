@@ -32,8 +32,14 @@ function init(){
   let model = {
     boardSize: 7,
     numShips: 3,
-    shiplength: 3,
+    shiplength: 4,
     shipsSunk: 0,
+    ships: [
+        {locations:['0', '0' ,'0'], hits:['','','']},
+        {locations:['0', '0', '0'], hits:['','','']},
+        {locations:['0', '0', '0'], hits:['','','']},
+        // {locations:['0', '0', '0'], hits:['','','']},
+    ],
     generateShipLocations: function() //генерируем расположение кораблей и добавляем в массив ships.locations
     {   let locations;
         for(let i = 0; i < this.numShips; i++){
@@ -43,47 +49,46 @@ function init(){
             this.ships[i].locations = locations; 
         }
     },
+    // метод отвечающий за генерирование кораблей 
     generateShip: function(){
         let direction = Math.floor(Math.random()*2);
         let row, col;
 
         if (direction === 1){ 
             row = Math.floor(Math.random() * this.boardSize);
-            col = Math.floor(Math.random() * this.boardSize - this.shiplength);
+            col = Math.floor(Math.random() * (this.boardSize - this.shiplength));
         }else{
-            row = Math.floor(Math.random() * this.boardSize - this.shiplength);
+            row = Math.floor(Math.random() * (this.boardSize - this.shiplength));
             col = Math.floor(Math.random() * this.boardSize)
         };
-        console.log(direction)
-        console.log(row, col)
+        
         let newShipLocations = [];
+        
         for(let i = 0; i < this.shiplength; i++){
             if(direction === 1){
-                newShipLocations.push(row + '' + (col + i));//?????
+                newShipLocations.push(row + '' + (col + i));
                 // console.log(row + '' + (col + i))
             }else{
                 newShipLocations.push((row + i) + '' + col);
             }
         };
-        console.log(newShipLocations)
+        console.log(newShipLocations);
         return newShipLocations;
     },
+    // метод проверяющий расположение кораблей
     collision: function(locations){
         for(let i = 0; i < this.numShips; i++){
             let ship = model.ships[i];
             for(let j = 0; j < locations.length; j++){
-                if (ship.ship.locations.indexOf(locations[j]) >= 0){
+                if (ship.locations.indexOf(locations[j]) >= 0){
                     return true
                 }
             }
         }
         return false
     },
-    ships: [
-        {locations:['31', '41', '51'], hits:['','','']},
-        {locations:['14','24','34'], hits:['','','']},
-        {locations:['00','01','02'], hits:['','','']},
-    ],
+    
+    
     fire: function(guess){
         for(let i = 0; i < this.numShips; i++){
             let ship = this.ships[i]; // перебераем массив ships и получаем три обекта (корабля) 
@@ -95,7 +100,7 @@ function init(){
                 if(this.isSunk(ship)) // вызываем метод isSunk для проверки заполненности массива hits объекта ship 
                 {view.displayMessage('You sank my battleship!')
                     this.shipsSunk++
-                    console.log(this.shipsSunk)
+                    // console.log(this.shipsSunk)
                 }
                 // if(this.shipsSunk === 3){
                 //     console.log('игра окончена')
@@ -117,7 +122,7 @@ function init(){
         return true
     }
   };
-
+  
 
   //   ----------------Контроллер----------------------
 
@@ -135,7 +140,7 @@ let controller = {
             }
         }
     }
-}
+};
 
 // проверка и обработка введённых данных
 function parseGuess(guess){
@@ -182,11 +187,8 @@ document.querySelector('.guessInput').onkeypress =  handleKeyPress
 // })
 
 
-model.generateShip()
-model.generateShip()
-model.generateShip()
-model.generateShip()
-model.generateShip()
+model.generateShipLocations()
+
 
 
 

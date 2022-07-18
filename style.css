@@ -96,7 +96,7 @@ form{
 form input{
     padding: 10px;
     font-size: 20px;
-    font-weight: 600;
+    /* font-weight: 600; */
     border-radius: 5px;
     border: 3px solid transparent;
     text-transform: uppercase;
@@ -115,14 +115,14 @@ form input{
 }
 .guessInput:hover{
     /* filter: brightness(90%); */
-    border: 3px solid red;
+    border: 3px solid rgb(37, 158, 0);
 }
 .guessInput:focus{
-    border: 3px solid red;
+    border: 3px solid rgb(37, 158, 0);
 }
 .fireButton {
     width: 130px;
-    color: red;
+    color: rgb(0, 0, 0);
 }
 .fireButton:hover{
     filter: brightness(90%);
