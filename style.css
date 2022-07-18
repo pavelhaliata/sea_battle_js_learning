@@ -73,12 +73,15 @@ li{
 
 }
 .messageArea {
+    /* display: block; */
+    
     background-color: white;    
     /* color: rgb(33, 133, 33); */
     text-align: center;
     line-height: 70px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 600;
     border-radius: 5px;
 }
 form{
@@ -112,10 +115,10 @@ form input{
 }
 .guessInput:hover{
     /* filter: brightness(90%); */
-    border: 3px solid rgb(33, 126, 10);
+    border: 3px solid red;
 }
 .guessInput:focus{
-    border: 3px solid rgb(33, 126, 10);
+    border: 3px solid red;
 }
 .fireButton {
     width: 130px;

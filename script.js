@@ -38,10 +38,31 @@ function init(){
     {   let locations;
         for(let i = 0; i < this.numShips; i++){
             do{
-                locations = this.generateShip();
-            }while(this.collision(locations));
-            this.ships[i].locations = locations;
+                locations = this.generateShip(); //генерируем расположение кораблей
+            }while(this.collision(locations)); // проверяем условие правильность расположения кораблей если true, то сохраняем позиции в массиве model.ships
+            this.ships[i].locations = locations; 
         }
+    },
+    generateShip: function(){
+        let direction = Math.floor(Math.random()*2);
+        let row, col;
+
+        if (direction === 1){
+            row = Math.floor(Math.random()*this.boardSize);
+            col = Math.floor(Math.random()*this.boardSize - this.shiplength);
+        }else{
+            row = Math.floor(Math.random()*this.boardSize - this.shiplength);
+            col = Math.floor(Math.random()*this.boardSize)
+        };
+        let newShipLocations = [];
+        for(let i = 0; i < this.shiplength; i++){
+            if(direction === 1){
+                newShipLocations.push(row + '' + (col + i));//?????
+            }else{
+                newShipLocations.push((row + i) + '' + col);
+            }
+        };
+        return newShipLocations;
     },
     ships: [
         {locations:['31', '41', '51'], hits:['','','']},
